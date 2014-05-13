@@ -5,8 +5,7 @@ Oi::Application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'home#index'
   get '/search' => 'home#search'
-  #get '/send' => Sender #'home#send_message'
-  get '/send' => 'home#send_message'
+  get '/images' => 'home#images'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

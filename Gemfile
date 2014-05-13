@@ -20,6 +20,9 @@ gem 'bootstrap-sass'
 gem 'flickraw'
 gem 'thin'
 gem 'fancybox2-rails'
+gem 'em-http-request'
+gem 'em-hiredis'
+gem 'faraday'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 gem 'therubyracer', platforms: :ruby
