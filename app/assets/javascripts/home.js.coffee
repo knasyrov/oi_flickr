@@ -5,11 +5,11 @@ jQuery ->
   $("a.fancybox").fancybox()
 
   $(document).on 'ajax:beforeSend', 'form.form-search', ()->
-    $('.images').fadeOut ()->
-      $('#ajax_loader').show()
-      $(@).empty()
+    $('#ajax_loader').show()
+    $('.images').fadeOut()
 
   $(document).on 'ajax:success', 'form.form-search', (event, data, status, xhr)->
+    $('.images').empty()
     if !data || data.length == 0
       $('.images').append("<p class='text-info'>По вашему запросу ничего не найдено</p>")
     else

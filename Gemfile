@@ -22,7 +22,7 @@ gem 'thin'
 gem 'fancybox2-rails'
 gem 'em-http-request'
 gem 'em-hiredis'
-gem 'faraday'
+#gem 'rack-fiber_pool', :require => 'rack/fiber_pool'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 gem 'therubyracer', platforms: :ruby
