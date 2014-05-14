@@ -23,8 +23,6 @@ class Flickr
     @hiredis.exists(key_name).callback do |val|
       unless val.to_i == 0
         @hiredis.get(key_name).callback do |list|
-          #Rails.logger.info 'FROM REDIS'
-          #Rails.logger.info list.inspect
           @list = Marshal.load(list)
           succeed(@list)
         end.errback do |error|
@@ -46,11 +44,11 @@ class Flickr
             photos = json['photos']
             @list = photos['photo'].map{|item| {thumb: url_t(item), link: url_b(item), title: item['title']}}
 
-            #@hiredis.set(key_name, Marshal.dump(@list)).callback {
-              #@hiredis.expire(key_name, @redis_cache_timeout).callback {
+            @hiredis.set(key_name, Marshal.dump(@list)).callback {
+              @hiredis.expire(key_name, @redis_cache_timeout).callback {
                 succeed(@list)
-              #}
-            #}
+              }
+            }
           end
         end
         http.errback do |err|

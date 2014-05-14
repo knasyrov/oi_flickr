@@ -6,14 +6,12 @@ class HomeController < ApplicationController
     if @keyword = params[:keyword]
       search = $flickr.search(@keyword)
       search.callback do |list|
-        Rails.logger.info 'RESPONSE'
         render json: list
         EM::next_tick {
           request.env['async.callback'].call(response)
         }
       end
       search.errback do |error|
-        Rails.logger.info 'ERROR'
         render :json => error, :status => :unprocessable_entity
         EM::next_tick {
           request.env['async.callback'].call(response)
